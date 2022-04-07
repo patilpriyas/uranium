@@ -2,26 +2,18 @@ const express = require('express');
 const router = express.Router();
 
 //Module 1-logger
-const logger = require('../logger/logger.js')
+const logger = require('../logger/logger.js');
+//module 2-helper
+const helper = require('../util/helper.js');
+//Module 3-formatter
+const formatter = require('../validator/formatter.js');
+
 router.get('/test-me', function (req, res) {
     res.send('My first ever api!');
     logger.welcome();
-});
-
-//module 2-helper
-const helper = require('../util/helper.js')
-router.get('/test-me-helper', function (req, res) {
-    res.send('My first ever api!');
     helper.printDate();
     helper.printMonth();
     helper.getBatchInfo();
-
-});
-
-//Module 3-formatter
-const formatter = require('../validator/formatter.js')
-router.get('/test-me-formatter', function (req, res) {
-    res.send('My first ever api!');
     formatter.trim();
     formatter.changeToLowerCase();
     formatter.changeToUpperCase();
@@ -39,11 +31,10 @@ router.get('/hello', function (req, res) {
 let _ = require('lodash');
 let splitArrayOfMonth = function () {
     const arrayOfMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const chunks = _.chunk(arrayOfMonth, 4);
+    const chunks = _.chunk(arrayOfMonth, 3);
     console.log(chunks);
     return chunks;
 }
-
 //Problem 4- package-lodash-tail
 let lastElementsOfArray = function () {
     const arrayOfOddNum = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
@@ -51,7 +42,6 @@ let lastElementsOfArray = function () {
     console.log(tails);
     return tails;
 }
-
 //problem 4 -package-lodash-union
 let unionArrayOfNumber = function () {
     const arr1 = [1, 2, 3];
@@ -63,10 +53,9 @@ let unionArrayOfNumber = function () {
     console.log(unionArrayy);
     return unionArrayy;
 }
-
 //problem 4 -package-lodash-frompairs
 let arrayWithKeyValuePair = function () {
-    const arrayOfObject = [["horror”,”The Shining"], ["drama”,”Titanic"], ["thriller”,”Shutter Island"], ["fantasy”,”Pans Labyrinth"]];
+    const arrayOfObject = [["horror","The Shining"],["drama","Titanic"],["thriller","Shutter Island"],["fantasy","Pans Labyrinth"]];
     const fromPairs = _.fromPairs(arrayOfObject);
     console.log(fromPairs);
 }
