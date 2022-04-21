@@ -7,12 +7,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-mongoose.connect("mongodb+srv://users-open-to-all:hiPassword123@cluster0.uh35t.mongodb.net/skDB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://priya:priya1122@cluster0.zscq3.mongodb.net/myDatabase",
+{
+    maxPoolSize: 50, 
+    wtimeoutMS: 2500,
     useNewUrlParser: true
 })
-.then( () => console.log("MongoDb is connected"))
-.catch ( err => console.log(err) )
+.then(  () => console.log("MongoDB is Connected"))
+.catch(err => console.log(err))
+
 
 
 app.use('/', route)
