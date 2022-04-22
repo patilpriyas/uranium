@@ -7,7 +7,7 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-router.post("/users", userController.createUser  )
+router.post("/users", userController.createUser)
 
 router.post("/login", userController.loginUser)
 
@@ -17,6 +17,7 @@ router.get("/users/:userId",token.tokenValidation,userController.getUserData)
 router.put("/users/:userId",token.tokenValidation,userController.updateUser)
 
 router.delete("/users/:userId",token.tokenValidation,userController.isDelete)
+
 
 
 

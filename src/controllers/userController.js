@@ -48,7 +48,7 @@ const getUserData = async function (req, res) {
   // if (!token) return res.send({ status: false, msg: "token must be present" });
 
   // console.log(token);
-  
+
   // // If a token is present then decode the token with verify function
   // // verify takes two inputs:
   // // Input 1 is the token to be decoded
@@ -67,10 +67,10 @@ const getUserData = async function (req, res) {
 };
 
 const updateUser = async function (req, res) {
-// Do the same steps here:
-// Check if the token is present
-// Check if the token present is a valid token
-// Return a different error message in both these cases
+  // Do the same steps here:
+  // Check if the token is present
+  // Check if the token present is a valid token
+  // Return a different error message in both these cases
 
   let userId = req.params.userId;
   let user = await userModel.findById(userId);
@@ -80,20 +80,19 @@ const updateUser = async function (req, res) {
   }
 
   let userData = req.body;
-  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData,{new:true});
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, { new: true });
   res.send({ status: updatedUser, data: updatedUser });
 };
 
-const isDelete=async function(req,res){
+const isDelete = async function (req, res) {
   let userId = req.params.userId;
-let user = await userModel.findById(userId);
+  let user = await userModel.findById(userId);
   if (!user) {
-  return res.send("No such user exists");
+    return res.send("No such user exists");
+  }
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, { isDeleted: "true" }, { new: true });
+  res.send({ status: updatedUser, data: updatedUser });
 }
-let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, {isDeleted:"true"},{new:true});
-res.send({ status: updatedUser, data: updatedUser });
-}
-
 
 
 module.exports.createUser = createUser;
